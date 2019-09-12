@@ -32,9 +32,9 @@ instance1 === instance2 gives true, cause both of variables are references to on
 
 ## Multiton
 This pattern allows to create definite number of instances of some class. Instances are saved in a map. Each instance has a key. When a user tries to create a new instance with a key, the map of instances is checked:
-a) if it has such key, then created instance will returned 
-b) if map doesn't have it and definite number of instances is not reached then a new instance will be created 
-c) if definite number of instances is reached then appropriate message will be sent
+- if it has such key, then created instance will returned 
+- if map doesn't have it and definite number of instances is not reached then a new instance will be created 
+- if definite number of instances is reached then appropriate message will be sent
 
 ```javascript
 class LimitedNumOfInstances {
