@@ -75,3 +75,53 @@ class MyMultiton {
 }
  ```
  
+##Pub/Sub (Publication/Subscription)
+
+This pattern allows one class/module to notify another one about some changes or send data. According to this patterns these modules are independent and don't influence on each other. To achieve this EventBus is used, it has preserves all registred subscribers callbacks and two methods subscribe to register new subscriber, and publish to notify subscribers. So EventBus is kind of mediator between two classes.
+
+Lets create EventBus, and two classes
+
+```javascript
+const EventBus = {
+  subscribers: {},
+  
+  subscribe(subsciber, callback) {
+    if (!subscribers[subsciber]) {
+      this.subscribers[subsciber] = [];
+    }
+    
+    this.subscribers[subsciber].push(callback);
+  },
+  
+  publish(subsciber, data) {
+    if (!this.subscribers[subsciber]) {
+      return;
+    }
+    
+    this.subscribers[subsciber].forEach(callback => callback(data));
+  }
+}
+
+class Sender {
+   #name;
+
+  constructor(name) {
+    this.#name = name;
+  }
+
+  send() {
+    EventBus.publish('test-pub/sub', this.#name);
+  }
+}
+
+class Listener {
+  constructor() {
+    EventBus.subscribe('test-pub/sub', this.listen)
+  }
+  
+  listen(data) {
+    console.log(`I just listened ${data}`)
+  }
+}
+
+```
