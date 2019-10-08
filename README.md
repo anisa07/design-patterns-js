@@ -75,7 +75,7 @@ class MyMultiton {
 }
  ```
  
-##Pub/Sub (Publication/Subscription)
+## Pub/Sub (Publication/Subscription)
 
 This pattern allows one class/module to notify another one about some changes or send data. According to this patterns these modules are independent and don't influence on each other. To achieve this EventBus is used, it has preserves all registred subscribers callbacks and two methods subscribe to register new subscriber, and publish to notify subscribers. So EventBus is kind of mediator between two classes.
 
